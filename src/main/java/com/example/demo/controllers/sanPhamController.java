@@ -77,7 +77,8 @@ public String update(@PathVariable("ma") String ma, sanPhamRequest updatereq)
 
     return "redirect:/san-pham/products";}
 
-//    xóa
+ //    xóa
+
 @GetMapping("delete/{ma}")
 public String delete(@PathVariable("ma") String maSp)
 {
