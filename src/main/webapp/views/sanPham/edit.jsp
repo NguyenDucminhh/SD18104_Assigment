@@ -18,18 +18,18 @@
 <body>
 <div class="container">
     <h1 class="mt-4">Add Product</h1>
-    <sf:form action="/sanPham/create" method="post" >
+    <sf:form action="/san-pham/update/${ rq.ma }" method="post" modelAttribute="rq">
 
         <div class="col-4 ">
             <div class="mb-3">
                 <label for="ma" class="form-label">Mã:</label>
-                <sf:input path="ma" type="text" id="ma" name="ma" class="form-control" />
-                <sf:errors  class="text-danger" />
+                <sf:input path="ma" type="text" id="ma" name="ma"  class="form-control" />
+                <sf:errors path="ma" class="text-danger" />
             </div>
 
             <div class="mb-3">
                 <label for="ten" class="form-label">Tên:</label>
-                <sf:input path="ten" type="text" id="ten" name="ten" class="form-control" required>
+                <sf:input path="ten" type="text" id="ten" name="ten" class="form-control" />
             </div>
         </div>
 
