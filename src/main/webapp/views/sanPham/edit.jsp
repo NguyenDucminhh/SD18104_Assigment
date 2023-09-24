@@ -18,12 +18,12 @@
 <body>
 <div class="container">
     <h1 class="mt-4">Add Product</h1>
-    <sf:form action="/san-pham/products" method="post" modelAttribute="sp">
+    <sf:form action="/san-pham/update/${ rq.ma }" method="post" modelAttribute="rq">
 
         <div class="col-4 ">
             <div class="mb-3">
                 <label for="ma" class="form-label">Mã:</label>
-                <sf:input path="ma" type="text" id="ma" name="ma" class="form-control" />
+                <sf:input path="ma" type="text" id="ma" name="ma"  class="form-control" />
                 <sf:errors path="ma" class="text-danger" />
             </div>
 
