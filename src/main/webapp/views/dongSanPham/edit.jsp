@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Add Product</title>
+    <title>Chỉnh sửa màu số ${rq.ma}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <style>
         body {
@@ -17,13 +17,13 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="mt-4">Add New Color</h1>
-    <sf:form action="/mau-sac/color" method="post" modelAttribute="ms">
+    <h1 class="mt-4">Chỉnh sửa màu sắc ${rq.ma}</h1>
+    <sf:form action="/mau-sac/update/${ rq.ma }" method="post" modelAttribute="rq">
 
         <div class="col-4 ">
             <div class="mb-3">
                 <label for="ma" class="form-label">Mã:</label>
-                <sf:input path="ma" type="text" id="ma" name="ma" class="form-control" />
+                <sf:input path="ma" type="text" id="ma" name="ma"  disabled="true" class="form-control" />
                 <sf:errors path="ma" class="text-danger" />
             </div>
 
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Thêm màu sắc</button>
+        <button type="submit" class="btn btn-primary">Update</button>
 
     </sf:form>
 </div>
