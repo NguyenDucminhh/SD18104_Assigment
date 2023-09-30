@@ -46,8 +46,8 @@
                 <td>${ rq.giaNhap }</td>
                 <td>${ rq.giaBan }</td>
                 <td class="text-end">
-                    <a href="/san-pham/edit/${rq.id}"><button class="btn btn-primary">Sửa</button></a>
-                    <a href="/san-pham/delete/${rq.id}"><button class="btn btn-danger">Xóa</button></a>
+                    <a href="/chitiet-sanpham/edit/${rq.id}"><button class="btn btn-primary">Sửa</button></a>
+                    <a href="/chitiet-sanpham/delete/${rq.id}"><button class="btn btn-danger">Xóa</button></a>
                 </td>
 
             </tr>
