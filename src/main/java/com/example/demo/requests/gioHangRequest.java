@@ -20,6 +20,6 @@ public class gioHangRequest {
     private String tenNguoiNhan;
     private String diaChi;
     private String sdt;
-    private Integer tinhTrang;
+    private boolean tinhtrang;
 
 }

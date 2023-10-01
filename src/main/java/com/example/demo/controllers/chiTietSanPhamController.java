@@ -32,6 +32,7 @@ public class chiTietSanPhamController {
     @GetMapping("/add")
     public String showAd(@ModelAttribute("sp") chiTietSanPhamRequest req)
     {
+
         return "chiTietSanPham/create";
     }
     // Fill dữ liệu lên bảng

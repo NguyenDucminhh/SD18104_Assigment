@@ -18,7 +18,7 @@
 <body>
 <div class="container">
     <h1 class="mt-4">Add New Cart</h1>
-    <sf:form action="/gio-hang/index" method="post" modelAttribute="gh">
+    <sf:form action="/gio-hang/update/${gh.ma}" method="post" modelAttribute="gh">
 
         <div class="col-4 ">
             <div class="mb-3">
@@ -57,14 +57,13 @@
                 <label for="sdt" class="form-label">SĐT:</label>
                 <sf:input path="sdt" type="text" id="sdt" name="sdt" class="form-control" />
             </div>
-            <div class="mb-3">
-               <div> <label  class="form-label">Tình trạng:</label></div>
-                <input type="checkbox"  name="tinhTrang" value="true" > Hoạt động
-                <input type="checkbox" name="tinhTrang" value="false" > Không hoạt động
-            </div>
+<%--            <div class="mb-3">--%>
+<%--                <label for="tinhTrang" class="form-label">Tình trạng:</label>--%>
+<%--                <sf:input path="tinhTrang" type="text" id="tinhTrang" name="tinhTrang" class="form-control" />--%>
+<%--            </div>--%>
         </div>
 
-        <button type="submit" class="btn btn-primary">Add new Cart</button>
+        <button type="submit" class="btn btn-primary">Update Cart</button>
 
     </sf:form>
 </div>

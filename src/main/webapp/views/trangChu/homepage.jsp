@@ -110,10 +110,13 @@
                     <a class="nav-link" href="/san-pham/products">Sản Phẩm</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Thông tin</a>
+                    <a class="nav-link" href="/chitiet-sanpham/index">Chi Tiết Sản Phẩm</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Giỏ Hàng</a>
+                    <a class="nav-link" href="/mau-sac/index">Màu sắc</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/gio-hang/index">Giỏ Hàng</a>
                 </li>
             </ul>
         </div>
