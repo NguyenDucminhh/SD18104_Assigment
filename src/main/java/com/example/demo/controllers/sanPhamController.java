@@ -1,7 +1,11 @@
 package com.example.demo.controllers;
-
+import com.example.demo.config.DemoBeanConfig;
+import com.example.demo.entities.SanPham;
+import com.example.demo.repositories.SanPhamRepository;
 import com.example.demo.requests.sanPhamRequest;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -9,23 +13,24 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("san-pham")
 public class sanPhamController {
 //    thêm dữ liệu sản phẩm
-    private ArrayList<sanPhamRequest> rq ;
+    private List<SanPham> rq ;
+    @Autowired
+    private SanPhamRepository spRepo;
+
 
     public sanPhamController(){
         this.rq = new ArrayList<>();
-        rq.add(new sanPhamRequest("1","Sản phẩm 1"));
-        rq.add(new sanPhamRequest("2","Sản phẩm 2"));
-        rq.add(new sanPhamRequest("3","Sản phẩm 3"));
-        rq.add(new sanPhamRequest("4","Sản phẩm 4"));
     }
     @GetMapping("/products")
     public String showProducts(Model model)
     {
+        this.rq = this.spRepo.findAll();
         model.addAttribute("data",this.rq);
         return "sanPham/products";
     }
@@ -43,37 +48,37 @@ public class sanPhamController {
             @Valid @ModelAttribute("sp") sanPhamRequest req,
             BindingResult result
     ) {
-        System.out.println(req.getMa());
-        System.out.println(req.getTen());
-        rq.add(req);
+//        System.out.println(req.getMa());
+//        System.out.println(req.getTen());
+//        rq.add(req);
         return "redirect:/san-pham/products";
     }
 
 //    chỉnh sửa
-    @GetMapping("edit/{ma}")
-    public String edit(@PathVariable("ma") String ma, Model m)
-    {
-        for (int i = 0; i < this.rq.size(); i++) {
-            sanPhamRequest rq = this.rq.get(i);
-            if (rq.getMa().equals(ma)) {
-                m.addAttribute("rq", rq);
-                break;
-            }
-        }
-
-        return "sanPham/edit";
-    }
+//    @GetMapping("edit/{ma}")
+//    public String edit(@PathVariable("ma") String ma, Model m)
+//    {
+//        for (int i = 0; i < this.rq.size(); i++) {
+//            sanPhamRequest rq = this.rq.get(i);
+//            if (rq.getMa().equals(ma)) {
+//                m.addAttribute("rq", rq);
+//                break;
+//            }
+//        }
+//
+//        return "sanPham/edit";
+//    }
 //    Update
 @PostMapping("update/{ma}")
 public String update(@PathVariable("ma") String ma, sanPhamRequest updatereq)
 {
-    for (int i = 0; i < this.rq.size(); i++) {
-        sanPhamRequest sp = this.rq.get(i);
-        if (sp.getMa().equals(ma)) {
-            this.rq.set(i, updatereq);
-            break;
-        }
-    }
+//    for (int i = 0; i < this.rq.size(); i++) {
+//        sanPhamRequest sp = this.rq.get(i);
+//        if (sp.getMa().equals(ma)) {
+//            this.rq.set(i, updatereq);
+//            break;
+//        }
+//    }
 
     return "redirect:/san-pham/products";}
 
@@ -82,13 +87,13 @@ public String update(@PathVariable("ma") String ma, sanPhamRequest updatereq)
 @GetMapping("delete/{ma}")
 public String delete(@PathVariable("ma") String maSp)
 {
-    for (int i = 0; i < this.rq.size(); i++) {
-        sanPhamRequest sp = this.rq.get(i);
-        if (sp.getMa().equals(maSp)) {
-            this.rq.remove(i);
-            break;
-        }
-    }
+//    for (int i = 0; i < this.rq.size(); i++) {
+//        sanPhamRequest sp = this.rq.get(i);
+//        if (sp.getMa().equals(maSp)) {
+//            this.rq.remove(i);
+//            break;
+//        }
+//    }
     return "redirect:/san-pham/products";
 }
 }
