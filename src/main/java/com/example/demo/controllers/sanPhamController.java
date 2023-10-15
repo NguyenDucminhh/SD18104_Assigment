@@ -38,48 +38,40 @@ public class sanPhamController {
     @GetMapping("/add")
     public String showAddForm(@ModelAttribute("sp") sanPhamRequest req)
     {
-
         return "sanPham/create";
     }
-
 
     @PostMapping("/products")
     public String storeProducts(
             @Valid @ModelAttribute("sp") sanPhamRequest req,
             BindingResult result
-    ) {
-//        System.out.println(req.getMa());
-//        System.out.println(req.getTen());
-//        rq.add(req);
+    )
+    {
+        System.out.println(req.getMa());
+        System.out.println( req.getTen());
+
+        rq.add(req);
         return "redirect:/san-pham/products";
     }
 
 //    chỉnh sửa
-//    @GetMapping("edit/{ma}")
-//    public String edit(@PathVariable("ma") String ma, Model m)
-//    {
-//        for (int i = 0; i < this.rq.size(); i++) {
-//            sanPhamRequest rq = this.rq.get(i);
-//            if (rq.getMa().equals(ma)) {
-//                m.addAttribute("rq", rq);
-//                break;
-//            }
-//        }
-//
-//        return "sanPham/edit";
-//    }
+    @GetMapping("edit/{ma}")
+   public String edit(@PathVariable("ma") String ma, Model m)
+    {
+        SanPham sp = this.spRepo.findByMa(ma);
+        m.addAttribute("sp", sp);
+       return "sanPham/edit";
+  }
 //    Update
 @PostMapping("update/{ma}")
 public String update(@PathVariable("ma") String ma, sanPhamRequest updatereq)
 {
-//    for (int i = 0; i < this.rq.size(); i++) {
-//        sanPhamRequest sp = this.rq.get(i);
-//        if (sp.getMa().equals(ma)) {
-//            this.rq.set(i, updatereq);
-//            break;
-//        }
-//    }
-
+    SanPham oldValue = this.spRepo.findByMa(ma);
+    SanPham sp = new SanPham();
+    sp.setId(oldValue.getId());
+    sp.setMa(updatereq.getMa());
+    sp.setTen(updatereq.getTen());
+    this.spRepo.save(sp);
     return "redirect:/san-pham/products";}
 
  //    xóa
@@ -87,13 +79,8 @@ public String update(@PathVariable("ma") String ma, sanPhamRequest updatereq)
 @GetMapping("delete/{ma}")
 public String delete(@PathVariable("ma") String maSp)
 {
-//    for (int i = 0; i < this.rq.size(); i++) {
-//        sanPhamRequest sp = this.rq.get(i);
-//        if (sp.getMa().equals(maSp)) {
-//            this.rq.remove(i);
-//            break;
-//        }
-//    }
+    SanPham sp = this.spRepo.findByMa(maSp);
+    this.spRepo.delete(sp);
     return "redirect:/san-pham/products";
 }
 }
