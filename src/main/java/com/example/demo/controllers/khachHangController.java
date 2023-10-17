@@ -42,13 +42,13 @@ public class khachHangController {
     public String index(Model model) {
         this.khachhang = this.repository.findAll();
         model.addAttribute("khachhang", khachhang);
-        return "/KhachHang/index";
+        return "/khachHang/index";
     }
 
     //create
     @GetMapping("create")
     public String create(@ModelAttribute("khachhang") KhachHangRequest request) {
-        return "KhachHang/create";
+        return "khachHang/create";
     }
 
     @PostMapping("store")
@@ -87,7 +87,7 @@ public class khachHangController {
     public String edit(@PathVariable("ma") String ma, Model m) {
         KhachHang kh = this.repository.findByMa(ma);
         m.addAttribute("khachhang", kh);
-        return "KhachHang/edit";
+        return "khachHang/edit";
     }
 
     @PostMapping("update/{ma}")

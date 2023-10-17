@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import com.example.demo.requests.sanPhamRequest;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;

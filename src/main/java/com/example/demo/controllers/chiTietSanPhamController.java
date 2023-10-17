@@ -1,31 +1,34 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.entities.ChiTietSP;
+import com.example.demo.repositories.ChiTietSanPhamRepository;
 import com.example.demo.requests.chiTietSanPhamRequest;
-import com.example.demo.requests.sanPhamRequest;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("chitiet-sanpham")
 public class chiTietSanPhamController {
-    private ArrayList<chiTietSanPhamRequest> rq;
+    @Autowired
+    private ChiTietSanPhamRepository repository;
     public chiTietSanPhamController(){
-        this.rq = new ArrayList<>();
-        rq.add(new chiTietSanPhamRequest("1","SP01","NSX01","Red","DongSP1",2,"Sản phẩm này rất vippro bờ hồ tây",10,12000L,20000L));
-        rq.add(new chiTietSanPhamRequest("2","SP01","NSX02","Blue","DongSP2",2,"Sản phẩm này cực vippro bờ hồ tây",15,5000L,8000L));
-        rq.add(new chiTietSanPhamRequest("3","SP01","NSX03","Green","DongSP3",2,"Sản phẩm này khá vippro bờ hồ tây",55,9000L,55000L));
-        rq.add(new chiTietSanPhamRequest("4","SP01","NSX04","Black","DongSP4",2,"Sản phẩm này đẳng cấp vippro bờ hồ tây",20,8000L,32000L));
+        this.ctsp = new ArrayList<>();
+
     }
+    public List<ChiTietSP> ctsp;
     @GetMapping("/index")
     public String showDetails(Model model)
     {
-        model.addAttribute("data",this.rq);
+        this.ctsp = repository.findAll();
+        model.addAttribute("data",this.ctsp);
         return "chiTietSanPham/productsDetail";
     }
     // create
@@ -41,19 +44,14 @@ public class chiTietSanPhamController {
             @Valid @ModelAttribute("sp") chiTietSanPhamRequest req,
             BindingResult result
     ){
-        rq.add(req);
+        ChiTietSP ctsp = new ChiTietSP();
+
+
         return "redirect:/chitiet-sanpham/index";
     }
     @GetMapping("edit/{id}")
     public String edit(@PathVariable("id") String id, Model m)
     {
-        for (int i = 0; i < this.rq.size(); i++) {
-            chiTietSanPhamRequest rq = this.rq.get(i);
-            if (rq.getId().equals(id)) {
-                m.addAttribute("rq", rq);
-                break;
-            }
-        }
 
         return "chiTietSanPham/edit";
     }
@@ -61,28 +59,29 @@ public class chiTietSanPhamController {
     @PostMapping("update/{id}")
     public String update(@PathVariable("id") String ma, chiTietSanPhamRequest updatereq)
     {
-        for (int i = 0; i < this.rq.size(); i++) {
-            chiTietSanPhamRequest sp = this.rq.get(i);
-            if (sp.getId().equals(ma)) {
-                this.rq.set(i, updatereq);
-                break;
-            }
-        }
-
-        return "redirect:/chitiet-sanpham/index";}
+//        for (int i = 0; i < this.rq.size(); i++) {
+//            chiTietSanPhamRequest sp = this.rq.get(i);
+//            if (sp.getId().equals(ma)) {
+//                this.rq.set(i, updatereq);
+//                break;
+//            }
+//        }
+//
+        return "redirect:/chitiet-sanpham/index";
+    }
 
     //    xóa
 
     @GetMapping("delete/{id}")
     public String delete(@PathVariable("id") String maSp)
     {
-        for (int i = 0; i < this.rq.size(); i++) {
-            chiTietSanPhamRequest sp = this.rq.get(i);
-            if (sp.getId().equals(maSp)) {
-                this.rq.remove(i);
-                break;
-            }
-        }
+//        for (int i = 0; i < this.rq.size(); i++) {
+//            chiTietSanPhamRequest sp = this.rq.get(i);
+//            if (sp.getId().equals(maSp)) {
+//                this.rq.remove(i);
+//                break;
+//            }
+//        }
         return "redirect:/chitiet-sanpham/index";
     }
 

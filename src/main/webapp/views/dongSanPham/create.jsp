@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="mt-4">Add New Color</h1>
+    <h1 class="mt-4">Thêm mới dòng sản phẩm</h1>
     <sf:form action="/mau-sac/color" method="post" modelAttribute="ms">
 
         <div class="col-4 ">
@@ -33,7 +33,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Thêm màu sắc</button>
+        <button type="submit" class="btn btn-primary">Thêm</button>
 
     </sf:form>
 </div>

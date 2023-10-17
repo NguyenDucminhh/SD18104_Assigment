@@ -17,7 +17,7 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="mt-4">Chỉnh sửa màu sắc ${rq.ma}</h1>
+    <h1 class="mt-4">Chỉnh sửa dòng sản phẩm ${rq.ma}</h1>
     <sf:form action="/mau-sac/update/${ rq.ma }" method="post" modelAttribute="rq">
 
         <div class="col-4 ">

@@ -47,16 +47,17 @@ public class sanPhamController {
             BindingResult result
     )
     {
-        System.out.println(req.getMa());
-        System.out.println( req.getTen());
+       SanPham sp = new SanPham();
+    sp.setMa(req.getMa());
+    sp.setTen(req.getTen());
+    spRepo.save(sp);
 
-        rq.add(req);
         return "redirect:/san-pham/products";
     }
 
 //    chỉnh sửa
     @GetMapping("edit/{ma}")
-   public String edit(@PathVariable("ma") String ma, Model m)
+   public String edit(@PathVariable("ma") String ma, Model m, sanPhamRequest request)
     {
         SanPham sp = this.spRepo.findByMa(ma);
         m.addAttribute("sp", sp);
@@ -66,9 +67,9 @@ public class sanPhamController {
 @PostMapping("update/{ma}")
 public String update(@PathVariable("ma") String ma, sanPhamRequest updatereq)
 {
-    SanPham oldValue = this.spRepo.findByMa(ma);
+    SanPham find = this.spRepo.findByMa(ma);
     SanPham sp = new SanPham();
-    sp.setId(oldValue.getId());
+    sp.setId(find.getId());
     sp.setMa(updatereq.getMa());
     sp.setTen(updatereq.getTen());
     this.spRepo.save(sp);

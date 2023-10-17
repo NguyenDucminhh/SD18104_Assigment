@@ -5,13 +5,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>List Colors</title>
+    <title>List product line</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
     <div>
-        <h1 class="mt-4">List Colors</h1>
+        <h1 class="mt-4">List product line</h1>
         <a class="d-flex" style="text-decoration: none" href="/mau-sac/add"> <button class="btn btn-success">Thêm</button></a>
     </div>
     <table class="table  col-9">

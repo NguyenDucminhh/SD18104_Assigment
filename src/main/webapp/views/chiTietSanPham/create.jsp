@@ -21,15 +21,14 @@
     <sf:form action="/chitiet-sanpham/index" method="post" modelAttribute="sp">
 
         <div class="col-4 ">
-            <div class="mb-3">
-                <label for="id" class="form-label">ID:</label>
-                <sf:input path="id" type="text" id="id" name="id" class="form-control" />
-
-            </div>
 
             <div class="mb-3">
-                <label for="idSP" class="form-label">ID sản phẩm</label>
-                <sf:input path="idSP" type="text" id="idSP" name="idSP" class="form-control" />
+                <label for="maSP" class="form-label">ID sản phẩm</label>
+             <div>
+                 <sf:select path="maSP" name="maSP">
+                     <sf:options items="${sanPham}" itemValue="ma" itemLabel="ma"/>
+                 </sf:select>
+             </div>
             </div>
             <div class="mb-3">
                 <label for="idNsx" class="form-label">idNSX:</label>
