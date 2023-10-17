@@ -19,69 +19,62 @@ import java.util.List;
 @RequestMapping("san-pham")
 public class sanPhamController {
 //    thêm dữ liệu sản phẩm
-    private List<SanPham> rq ;
-    @Autowired
-    private SanPhamRepository spRepo;
+@Autowired
+private SanPhamRepository repository;
 
+    public List<SanPham> sanpham;
 
-    public sanPhamController(){
-        this.rq = new ArrayList<>();
+    public sanPhamController() {
+        this.sanpham = new ArrayList<>();
     }
-    @GetMapping("/products")
-    public String showProducts(Model model)
-    {
-        this.rq = this.spRepo.findAll();
-        model.addAttribute("data",this.rq);
+
+    @GetMapping("index")
+    public String index(Model model) {
+        this.sanpham = this.repository.findAll();
+        model.addAttribute("sanpham", sanpham);
         return "sanPham/products";
     }
-    //Create
-    @GetMapping("/add")
-    public String showAddForm(@ModelAttribute("sp") sanPhamRequest req)
-    {
+
+    //create
+    @GetMapping("create")
+    public String index(@ModelAttribute("sanpham") sanPhamRequest request) {
         return "sanPham/create";
     }
 
-    @PostMapping("/products")
-    public String storeProducts(
-            @Valid @ModelAttribute("sp") sanPhamRequest req,
-            BindingResult result
-    )
-    {
-       SanPham sp = new SanPham();
-    sp.setMa(req.getMa());
-    sp.setTen(req.getTen());
-    spRepo.save(sp);
+    @PostMapping("index")
+    public String store(@Valid @ModelAttribute("sanpham") sanPhamRequest request, BindingResult result) {
+        SanPham sp = new SanPham();
+        sp.setMa(request.getMa());
+        sp.setTen(request.getTen());
+        this.repository.save(sp);
 
-        return "redirect:/san-pham/products";
+        return "redirect:/san-pham/index";
     }
 
-//    chỉnh sửa
+    //delete
+    @GetMapping("delete/{ma}")
+    public String delete(@PathVariable("ma") String ma, sanPhamRequest request) {
+        SanPham sp = this.repository.findByMa(ma);
+        this.repository.delete(sp);
+        return "redirect:/san-pham/index";
+    }
+
+    //update
     @GetMapping("edit/{ma}")
-   public String edit(@PathVariable("ma") String ma, Model m, sanPhamRequest request)
-    {
-        SanPham sp = this.spRepo.findByMa(ma);
-        m.addAttribute("sp", sp);
-       return "sanPham/edit";
-  }
-//    Update
-@PostMapping("update/{ma}")
-public String update(@PathVariable("ma") String ma, sanPhamRequest updatereq)
-{
-    SanPham find = this.spRepo.findByMa(ma);
-    SanPham sp = new SanPham();
-    sp.setId(find.getId());
-    sp.setMa(updatereq.getMa());
-    sp.setTen(updatereq.getTen());
-    this.spRepo.save(sp);
-    return "redirect:/san-pham/products";}
+    public String edit(@PathVariable("ma") String ma, Model model, sanPhamRequest request) {
+        SanPham sp = this.repository.findByMa(ma);
+        model.addAttribute("sanpham", sp);
+        return "sanPham/edit";
+    }
 
- //    xóa
-
-@GetMapping("delete/{ma}")
-public String delete(@PathVariable("ma") String maSp)
-{
-    SanPham sp = this.spRepo.findByMa(maSp);
-    this.spRepo.delete(sp);
-    return "redirect:/san-pham/products";
-}
+    @PostMapping("update/{ma}")
+    public String update(@PathVariable("ma") String ma, Model model, sanPhamRequest request) {
+        SanPham find = this.repository.findByMa(ma);
+        SanPham sp = new SanPham();
+        sp.setId(find.getId());
+        sp.setMa(request.getMa());
+        sp.setTen(request.getTen());
+        this.repository.save(sp);
+        return "redirect:/san-pham/index";
+    }
 }

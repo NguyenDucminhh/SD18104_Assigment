@@ -16,12 +16,12 @@
 
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Sản phẩm</title>
+    <title>Nhân Viên</title>
 </head>
 <body class="container">
 <div>
-    <h1 class="mt-4">Sản Phẩm</h1>
-    <a class="d-flex" style="text-decoration: none" href="/san-pham/create"> <button class="btn btn-success">Thêm</button></a>
+    <h1 class="mt-4">Nhân Viên</h1>
+    <a class="d-flex" style="text-decoration: none" href="/nhan-vien/create"> <button class="btn btn-success">Thêm</button></a>
 </div>
 <br>
 <table class="table table-striped">
@@ -29,16 +29,30 @@
     <tr>
         <td>Mã</td>
         <td>Tên</td>
+        <td>Tên Đệm</td>
+        <td>Ho</td>
+        <td>Giới Tính</td>
+        <td>Ngày Sinh</td>
+        <td>Địa CHỉ</td>
+        <td>Điện Thoại</td>
+        <td>Trang Thái</td>
         <td colspan="2">Thao Tác</td>
     </tr>
     </thead>
-    <tbody>
-    <c:forEach items="${ sanpham }" var="sp">
+    <tbody >
+    <c:forEach items="${ data }" var="ds">
         <tr>
-            <td>${sp.ma}</td>
-            <td>${sp.ten}</td>
-            <td><a href="/san-pham/edit/${sp.ma}">Update</a> </td>
-            <td><a href="/san-pham/delete/${sp.ma}">delete</a> </td>
+            <td>${ds.ma}</td>
+            <td>${ds.ten}</td>
+            <td>${ds.tenDem}</td>
+            <td>${ds.ho}</td>
+            <td>${ds.gioiTinh}</td>
+            <td>${ds.ngaySinh}</td>
+            <td>${ds.diaChi}</td>
+            <td>${ds.sdt}</td>
+            <td>${ds.trangThai==0?'Đang hoạt động':'Không hoạt động'}</td>
+            <td><a href="/nhan-vien/edit/${ds.ma}">Update</a></td>
+            <td><a href="/nhan-vien/delete/${ds.ma}">Delete</a></td>
         </tr>
     </c:forEach>
     </tbody>

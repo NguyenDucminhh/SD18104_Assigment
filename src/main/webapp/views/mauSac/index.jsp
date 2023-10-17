@@ -16,12 +16,12 @@
 
     <!--Custom styles-->
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Sản phẩm</title>
+    <title>Document</title>
 </head>
 <body class="container">
 <div>
-    <h1 class="mt-4">Sản Phẩm</h1>
-    <a class="d-flex" style="text-decoration: none" href="/san-pham/create"> <button class="btn btn-success">Thêm</button></a>
+    <h1 class="mt-4">Màu Sắc</h1>
+    <a class="d-flex" style="text-decoration: none" href="/mau-sac/create"> <button class="btn btn-success">Thêm</button></a>
 </div>
 <br>
 <table class="table table-striped">
@@ -33,12 +33,12 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${ sanpham }" var="sp">
+    <c:forEach items="${ data }" var="ch">
         <tr>
-            <td>${sp.ma}</td>
-            <td>${sp.ten}</td>
-            <td><a href="/san-pham/edit/${sp.ma}">Update</a> </td>
-            <td><a href="/san-pham/delete/${sp.ma}">delete</a> </td>
+            <td>${ch.ma}</td>
+            <td>${ch.ten}</td>
+            <td><a href="/mau-sac/edit/${ch.ma}">Update</a> </td>
+            <td><a href="/mau-sac/delete/${ch.ma}">delete</a> </td>
         </tr>
     </c:forEach>
     </tbody>
